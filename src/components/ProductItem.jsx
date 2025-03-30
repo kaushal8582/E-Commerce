@@ -1,6 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
+import cartContext from "../Store/cart-context";
 
 const ProductItem = (props) => {
+
+  const {addDataInCart} =  useContext(cartContext)
+
+  function handleSubmit(){
+    let obj ={
+      title:props.title,
+      img: props.img,
+      price: props.price,
+      id: Date.now(),
+      quantity:1,
+    }
+    addDataInCart(obj);
+  }
+
+
   return (
     <div key={Math.random()*Date.now()} className="w-[300px]  p-2 flex  flex-col gap-[10px]">
       <img
@@ -11,7 +27,7 @@ const ProductItem = (props) => {
       <h1 className="text-2xl font-bold">{props.title}</h1>
       <div className="flex w-full items-center justify-between">
         <h3>$ {props.price}</h3>
-        <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out flex items-center space-x-2">
+        <button onClick={handleSubmit} className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out flex items-center space-x-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"

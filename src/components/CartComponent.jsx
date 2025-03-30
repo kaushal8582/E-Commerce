@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
+import cartContext from "../Store/cart-context";
 
 const CartComponent = (props) => {
+
+  const {removeDataInCart}  = useContext(cartContext)
+
   return (
     <div>
       <div className="flex mt-2 items-center justify-between p-4 border rounded-lg shadow-sm bg-white hover:shadow-md transition-shadow">
@@ -34,7 +38,7 @@ const CartComponent = (props) => {
 
         {/* Remove Button */}
         <button
-          // onClick={handleRemove}
+          onClick={()=>removeDataInCart(props.id)}
           className="ml-2 p-2 text-white bg-red-500 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 transition-colors"
         >
           <svg

@@ -1,22 +1,28 @@
 import React from "react";
 import Cart from "./Cart";
+import { Link } from "react-router-dom";
 
-const Nav = () => {
+const Nav = (props) => {
   return (
     <div className=" relative flex items-center justify-center text-white gap-20 bg-black w-full py-4 border-b-2 border-white">
-      <a className="text-[15px]" href="">
+      <Link to={"/"} className="text-[15px]" href="">
         Home
-      </a>
-      <a className="text-[15px]" href="">
+      </Link>
+      <Link to={"/store"} className="text-[15px]">
         Store
-      </a>
-      <a className="text-[15px]" href="">
+      </Link>
+      <Link to={"/about"} className="text-[15px]">
         About
-      </a>
+      </Link>
 
-      <div className="absolute right-2 " >
-        <Cart />
-      </div>
+      {!props.isHome && (
+        <div
+          onClick={() => props.onCartOpen()}
+          className=" cursor-pointer absolute right-2 "
+        >
+          <Cart />
+        </div>
+      )}
     </div>
   );
 };
