@@ -14,8 +14,11 @@ const Nav = (props) => {
       <Link to={"/about"} className="text-[15px]">
         About
       </Link>
+      <Link to={"/contact"} className="text-[15px]">
+        Contact Us
+      </Link>
 
-      {!props.isHome && (
+      {props.isStore && (
         <div
           onClick={() => props.onCartOpen()}
           className=" cursor-pointer absolute right-2 "

@@ -5,10 +5,32 @@ const AddMovieForm = () => {
   const [openingText, setOpeningText] = useState('');
   const [releaseDate, setReleaseDate] = useState('');
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async(event) => {
     event.preventDefault();
-    // Handle form submission, e.g., send data to API
+
     console.log('Submitted:', { title, openingText, releaseDate });
+
+    let obj ={
+        id:Date.now(),
+        title:title,
+        desc:openingText,
+        date:releaseDate
+    }
+
+    try {
+        const response = await fetch('https://e-comm-13a6a-default-rtdb.firebaseio.com/movies.json',{
+            method:"POST",
+            body : JSON.stringify(obj)
+        })
+
+        if(response.ok){
+            alert("Data added successfully");
+        }
+
+    } catch (error) {
+        console.log(error)
+    }
+
   };
 
   return (
